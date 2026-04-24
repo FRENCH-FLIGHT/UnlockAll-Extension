@@ -2,13 +2,9 @@
   "manifest_version": 3,
   "name": "UnlockAll: Page Freedom",
   "short_name": "UnlockAll",
-  "version": "1.0.0",
-  "description": "Restore full control over web pages: re-enable right-click, text selection, copy-paste, and keyboard shortcuts on restricted sites.",
-  "permissions": [
-    "storage", 
-    "activeTab", 
-    "scripting"
-  ],
+  "version": "2.0.0",
+  "description": "Restore full control over web pages: right-click, text selection, copy-paste, drag & drop, and more.",
+  "permissions": ["storage", "activeTab", "scripting", "tabs"],
   "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html",
@@ -42,5 +38,5 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "minimum_chrome_version": "102"
+  "minimum_chrome_version": "111"
 }
