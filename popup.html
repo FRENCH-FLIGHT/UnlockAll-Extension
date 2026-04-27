@@ -1,293 +1,381 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>UnlockAll</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="popup.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="popup.css"/>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="logo">
-      <div class="logo-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
-        </svg>
-      </div>
-      <div>
-        <div class="logo-name">UnlockAll</div>
-        <div class="logo-sub">Page Freedom v1.0</div>
-      </div>
-    </div>
-    <div class="header-right">
-      <div class="status-badge" id="statusBadge">
-        <span class="status-dot"></span>
-        <span class="status-text">Actif</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- QUICK ACTIONS -->
-  <div class="quick-bar">
-    <button class="quick-btn btn-unlock-all" id="btnUnlockAll" title="Tout activer">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-        <path d="M18 1l3 3-3 3M3 12V9a6 6 0 0 1 11.87-1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M6 23l-3-3 3-3M21 12v3a6 6 0 0 1-11.87 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Tout activer
-    </button>
-    <button class="quick-btn btn-lock-all" id="btnLockAll" title="Tout désactiver">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+<!-- ══ HEADER ══════════════════════════════════════════════════ -->
+<header class="header">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
         <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
         <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
       </svg>
-      Tout désactiver
-    </button>
-    <button class="quick-btn btn-overlay" id="btnOverlays" title="Retirer les overlays maintenant">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <line x1="18" y1="4" x2="4" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      Retirer overlays
-    </button>
+    </div>
+    <div>
+      <div class="logo-name">UnlockAll</div>
+      <div class="logo-sub" id="versionLabel">v2.0</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="status-badge" id="statusBadge">
+      <span class="status-dot"></span>
+      <span class="status-text" data-i18n="active">Actif</span>
+    </div>
+  </div>
+</header>
+
+<!-- ══ QUICK BAR ══════════════════════════════════════════════ -->
+<div class="quick-bar">
+  <button class="quick-btn btn-green" id="btnUnlockAll">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M18 1l3 3-3 3M3 12V9a6 6 0 0 1 11.87-1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 23l-3-3 3-3M21 12v3a6 6 0 0 1-11.87 1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span data-i18n="enableAll">Tout activer</span>
+  </button>
+  <button class="quick-btn btn-red" id="btnLockAll">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span data-i18n="disableAll">Tout désactiver</span>
+  </button>
+  <button class="quick-btn btn-purple" id="btnPickOverlay" title="">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M22 12c0 0-4 8-10 8S2 12 2 12s4-8 10-8 10 8 10 8z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span data-i18n="picker">Cibler</span>
+  </button>
+</div>
+
+<!-- ══ TABS ═══════════════════════════════════════════════════ -->
+<nav class="tabs">
+  <button class="tab active" data-tab="protections">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span data-i18n="tabProtections">Protections</span>
+  </button>
+  <button class="tab" data-tab="overlays">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span data-i18n="tabOverlays">Overlays</span>
+    <span class="tab-badge" id="overlayBadge" style="display:none">0</span>
+  </button>
+  <button class="tab" data-tab="scripts">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><polyline points="16 18 22 12 16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="8 6 2 12 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span data-i18n="tabScripts">Scripts</span>
+    <span class="tab-badge" id="scriptsBadge" style="display:none">0</span>
+  </button>
+  <button class="tab" data-tab="settings">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2"/></svg>
+    <span data-i18n="tabSettings">Paramètres</span>
+  </button>
+</nav>
+
+<!-- ══ PANEL: PROTECTIONS ══════════════════════════════════════ -->
+<div class="panel active" id="panel-protections">
+
+  <!-- Group: Mouse -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-icon">🖱️</span>
+      <span class="group-title" data-i18n="groupMouse">Souris & Sélection</span>
+      <span class="group-count" id="cnt-mouse">0/4</span>
+    </div>
+    <div class="group-body">
+      <div class="feature-row" data-tooltip="contextmenu">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fContextmenu">Clic droit</div>
+          <div class="feature-desc" data-i18n="dContextmenu">Réactive le menu contextuel natif</div>
+        </div>
+        <label class="toggle"><input type="checkbox" data-key="contextmenu"/><span class="slider"></span></label>
+      </div>
+      <div class="feature-row" data-tooltip="selectstart">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fSelectstart">Sélection de texte</div>
+          <div class="feature-desc" data-i18n="dSelectstart">Supprime user-select:none et le blocage selectstart</div>
+        </div>
+        <label class="toggle"><input type="checkbox" data-key="selectstart"/><span class="slider"></span></label>
+      </div>
+      <div class="feature-row" data-tooltip="cursor">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fCursor">Curseur de souris</div>
+          <div class="feature-desc" data-i18n="dCursor">Force l'affichage quand cursor:none est utilisé</div>
+        </div>
+        <label class="toggle"><input type="checkbox" data-key="cursor"/><span class="slider"></span></label>
+      </div>
+      <div class="feature-row" data-tooltip="pointerEvents">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fPointerEvents">Pointer events</div>
+          <div class="feature-desc" data-i18n="dPointerEvents">Neutralise les overlays CSS bloquant les clics</div>
+        </div>
+        <label class="toggle"><input type="checkbox" data-key="pointerEvents"/><span class="slider"></span></label>
+      </div>
+    </div>
   </div>
 
-  <!-- SCROLLABLE CONTENT -->
-  <div class="content" id="popupContent">
-
-    <!-- GROUP: SOURIS & SÉLECTION -->
-    <div class="group">
-      <div class="group-header">
-        <span class="group-icon">🖱️</span>
-        <span class="group-title">Souris & Sélection</span>
-        <span class="group-count" id="count-mouse">0/4</span>
+  <!-- Group: Clipboard & Keyboard -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-icon">📋</span>
+      <span class="group-title" data-i18n="groupClipboard">Presse-papiers & Clavier</span>
+      <span class="group-count" id="cnt-keyboard">0/3</span>
+    </div>
+    <div class="group-body">
+      <div class="feature-row" data-tooltip="clipboard">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fClipboard">Copier / Couper / Coller</div>
+          <div class="feature-desc" data-i18n="dClipboard">Ctrl+C, Ctrl+X, Ctrl+V toujours disponibles</div>
+        </div>
+        <label class="toggle"><input type="checkbox" data-key="clipboard"/><span class="slider"></span></label>
       </div>
-      <div class="group-body">
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Clic droit</div>
-            <div class="feature-desc">Réactive le menu contextuel</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="contextmenu" />
-            <span class="slider"></span>
-          </label>
+      <div class="feature-row" data-tooltip="keyboard">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fKeyboard">Raccourcis clavier</div>
+          <div class="feature-desc" data-i18n="dKeyboard">Empêche la page de capturer vos raccourcis</div>
         </div>
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Sélection de texte</div>
-            <div class="feature-desc">Supprime le blocage de sélection</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="selectstart" />
-            <span class="slider"></span>
-          </label>
+        <label class="toggle"><input type="checkbox" data-key="keyboard"/><span class="slider"></span></label>
+      </div>
+      <div class="feature-row" data-tooltip="focus">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fFocus">Anti-vol de focus</div>
+          <div class="feature-desc" data-i18n="dFocus">Bloque les appels automatiques à focus() / blur()</div>
         </div>
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Curseur de souris</div>
-            <div class="feature-desc">Force l'affichage du curseur</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="cursor" />
-            <span class="slider"></span>
-          </label>
-        </div>
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Pointer events CSS</div>
-            <div class="feature-desc">Restaure les interactions sur les overlays</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="pointerEvents" />
-            <span class="slider"></span>
-          </label>
-        </div>
-
+        <label class="toggle"><input type="checkbox" data-key="focus"/><span class="slider"></span></label>
       </div>
     </div>
+  </div>
 
-    <!-- GROUP: PRESSE-PAPIERS & CLAVIER -->
-    <div class="group">
-      <div class="group-header">
-        <span class="group-icon">📋</span>
-        <span class="group-title">Presse-papiers & Clavier</span>
-        <span class="group-count" id="count-keyboard">0/3</span>
+  <!-- Group: Behavior -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-icon">📜</span>
+      <span class="group-title" data-i18n="groupBehavior">Comportement de page</span>
+      <span class="group-count" id="cnt-behavior">0/5</span>
+    </div>
+    <div class="group-body">
+      <div class="feature-row" data-tooltip="dragdrop">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fDragdrop">Glisser-déposer</div>
+          <div class="feature-desc" data-i18n="dDragdrop">Réactive drag&drop + supprime ondragstart inline</div>
+        </div>
+        <label class="toggle"><input type="checkbox" data-key="dragdrop"/><span class="slider"></span></label>
       </div>
-      <div class="group-body">
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Copier / Couper / Coller</div>
-            <div class="feature-desc">Ctrl+C, Ctrl+X, Ctrl+V débloqués</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="clipboard" />
-            <span class="slider"></span>
-          </label>
+      <div class="feature-row" data-tooltip="scroll">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fScroll">Défilement</div>
+          <div class="feature-desc" data-i18n="dScroll">Supprime overflow:hidden et touch-action:none</div>
         </div>
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Raccourcis clavier</div>
-            <div class="feature-desc">Restaure tous les raccourcis bloqués</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="keyboard" />
-            <span class="slider"></span>
-          </label>
+        <label class="toggle"><input type="checkbox" data-key="scroll"/><span class="slider"></span></label>
+      </div>
+      <div class="feature-row" data-tooltip="print">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fPrint">Impression</div>
+          <div class="feature-desc" data-i18n="dPrint">Bypass le blocage de Ctrl+P et beforeprint</div>
         </div>
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Focus anti-vol</div>
-            <div class="feature-desc">Empêche la page de voler le focus</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="focus" />
-            <span class="slider"></span>
-          </label>
+        <label class="toggle"><input type="checkbox" data-key="print"/><span class="slider"></span></label>
+      </div>
+      <div class="feature-row" data-tooltip="visibility">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fVisibility">Visibilité d'onglet</div>
+          <div class="feature-desc" data-i18n="dVisibility">Spoofe document.hidden = false en permanence</div>
         </div>
-
+        <label class="toggle"><input type="checkbox" data-key="visibility"/><span class="slider"></span></label>
+      </div>
+      <div class="feature-row" data-tooltip="overlays">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fOverlays">Suppression auto overlays</div>
+          <div class="feature-desc" data-i18n="dOverlays">Détecte et masque les modales / paywalls auto</div>
+        </div>
+        <label class="toggle"><input type="checkbox" data-key="overlays"/><span class="slider"></span></label>
       </div>
     </div>
+  </div>
 
-    <!-- GROUP: COMPORTEMENT DE PAGE -->
-    <div class="group">
-      <div class="group-header">
-        <span class="group-icon">📜</span>
-        <span class="group-title">Comportement de page</span>
-        <span class="group-count" id="count-behavior">0/4</span>
+  <!-- Group: Advanced -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-icon">⚙️</span>
+      <span class="group-title" data-i18n="groupAdvanced">Avancé</span>
+      <span class="group-count" id="cnt-advanced">0/2</span>
+    </div>
+    <div class="group-body">
+      <div class="feature-row" data-tooltip="devtools">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fDevtools">Bypass détection DevTools</div>
+          <div class="feature-desc">
+            <span class="badge-warn" data-i18n="experimental">Expérimental</span>
+            <span data-i18n="dDevtools">Anti-debugger, timing, resize, Proxy, Worker</span>
+          </div>
+        </div>
+        <label class="toggle"><input type="checkbox" data-key="devtools"/><span class="slider"></span></label>
       </div>
-      <div class="group-body">
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Défilement (scroll)</div>
-            <div class="feature-desc">Supprime le blocage du scroll</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="scroll" />
-            <span class="slider"></span>
-          </label>
+      <div class="feature-row" data-tooltip="consoleProtect">
+        <div class="feature-info">
+          <div class="feature-name" data-i18n="fConsole">Protection console</div>
+          <div class="feature-desc" data-i18n="dConsole">Empêche console.clear() et les getter toString tricks</div>
         </div>
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Glisser-déposer</div>
-            <div class="feature-desc">Réactive drag & drop sur tous les éléments</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="dragdrop" />
-            <span class="slider"></span>
-          </label>
-        </div>
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Impression</div>
-            <div class="feature-desc">Supprime le blocage de Ctrl+P</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="print" />
-            <span class="slider"></span>
-          </label>
-        </div>
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Retirer overlays / paywalls</div>
-            <div class="feature-desc">Supprime les modales bloquantes (auto)</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="overlays" />
-            <span class="slider"></span>
-          </label>
-        </div>
-
+        <label class="toggle"><input type="checkbox" data-key="consoleProtect"/><span class="slider"></span></label>
       </div>
     </div>
+  </div>
 
-    <!-- GROUP: AVANCÉ -->
-    <div class="group">
-      <div class="group-header">
-        <span class="group-icon">⚙️</span>
-        <span class="group-title">Avancé</span>
-        <span class="group-count" id="count-advanced">0/2</span>
+  <!-- Quick tools -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-icon">🔧</span>
+      <span class="group-title" data-i18n="groupTools">Outils rapides</span>
+    </div>
+    <div class="utils-row">
+      <button class="util-btn" id="btnViewSource">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><polyline points="16 18 22 12 16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="8 6 2 12 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span data-i18n="toolSource">Source</span>
+      </button>
+      <button class="util-btn" id="btnCopyUrl">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span data-i18n="toolCopyUrl">Copier URL</span>
+      </button>
+      <button class="util-btn" id="btnIncognito">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span data-i18n="toolIncognito">Incognito</span>
+      </button>
+    </div>
+  </div>
+
+</div><!-- /panel-protections -->
+
+<!-- ══ PANEL: OVERLAYS ═════════════════════════════════════════ -->
+<div class="panel" id="panel-overlays">
+  <div class="panel-toolbar">
+    <span class="panel-info" id="overlayCount" data-i18n="overlayNone">Aucun overlay masqué</span>
+    <button class="pill-btn btn-red-ghost" id="btnRestoreAll" style="display:none" data-i18n="restoreAll">Tout restaurer</button>
+  </div>
+  <div class="overlay-list" id="overlayList">
+    <div class="empty-state" id="overlayEmpty">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="#64748b" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <p data-i18n="overlayEmptyMsg">Aucun overlay supprimé sur cette page.</p>
+      <p class="empty-sub" data-i18n="overlayEmptyHint">Activez la suppression auto ou utilisez le bouton Cibler.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PANEL: SCRIPTS ══════════════════════════════════════════ -->
+<div class="panel" id="panel-scripts">
+  <div class="panel-toolbar">
+    <button class="pill-btn btn-green" id="btnNewScript">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span data-i18n="newScript">Nouveau script</span>
+    </button>
+  </div>
+  <div class="script-list" id="scriptList">
+    <div class="empty-state" id="scriptEmpty">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><polyline points="16 18 22 12 16 6" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/><polyline points="8 6 2 12 8 18" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <p data-i18n="scriptEmptyMsg">Aucun script personnalisé.</p>
+      <p class="empty-sub" data-i18n="scriptEmptyHint">Créez des scripts qui s'exécutent sur chaque page.</p>
+    </div>
+  </div>
+
+  <!-- Script editor (hidden by default) -->
+  <div class="script-editor" id="scriptEditor" style="display:none">
+    <div class="editor-header">
+      <input type="text" class="editor-name" id="editorName" placeholder="Nom du script…"/>
+      <button class="icon-btn" id="btnCloseEditor" title="Fermer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="editor-meta">
+      <select class="editor-select" id="editorRunAt">
+        <option value="document_start" data-i18n="runStart">Au démarrage (document_start)</option>
+        <option value="document_end" data-i18n="runEnd">DOM prêt (document_end)</option>
+        <option value="document_idle" data-i18n="runIdle">Chargement complet (document_idle)</option>
+      </select>
+    </div>
+    <textarea class="editor-code" id="editorCode" spellcheck="false" placeholder="// Votre JavaScript ici&#10;// Accès complet au contexte de la page&#10;document.title = 'Custom';"></textarea>
+    <div class="editor-footer">
+      <div class="editor-tips">
+        <span class="tip-label">Exemples :</span>
+        <button class="tip-btn" data-snippet="// Supprimer les publicités&#10;document.querySelectorAll('[class*=&quot;ad&quot;],[id*=&quot;ad&quot;]').forEach(el => el.remove());">Supprimer pubs</button>
+        <button class="tip-btn" data-snippet="// Forcer la langue en anglais&#10;document.documentElement.lang = 'en';">Forcer EN</button>
+        <button class="tip-btn" data-snippet="// Afficher toutes les images cachées&#10;document.querySelectorAll('img').forEach(img => { img.style.display='block'; img.style.visibility='visible'; });">Afficher imgs</button>
       </div>
-      <div class="group-body">
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Bypass détection DevTools</div>
-            <div class="feature-desc">
-              <span class="badge-warn">Expérimental</span>
-              Contourne les détections de DevTools
-            </div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="devtools" />
-            <span class="slider"></span>
-          </label>
-        </div>
-
-        <div class="feature-row">
-          <div class="feature-info">
-            <div class="feature-name">Protection console</div>
-            <div class="feature-desc">Empêche console.clear() par la page</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" data-key="consoleProtect" />
-            <span class="slider"></span>
-          </label>
-        </div>
-
+      <div class="editor-actions">
+        <button class="pill-btn btn-ghost" id="btnDeleteScript" data-i18n="deleteScript" style="display:none">Supprimer</button>
+        <button class="pill-btn btn-green" id="btnSaveScript" data-i18n="saveScript">Enregistrer</button>
       </div>
     </div>
+  </div>
+</div>
 
-    <!-- SOURCE UTILS -->
-    <div class="group">
-      <div class="group-header">
-        <span class="group-icon">🔧</span>
-        <span class="group-title">Outils rapides</span>
+<!-- ══ PANEL: SETTINGS ═════════════════════════════════════════ -->
+<div class="panel" id="panel-settings">
+
+  <!-- Language -->
+  <div class="settings-section">
+    <div class="settings-label" data-i18n="settingLanguage">Langue / Language</div>
+    <div class="lang-grid" id="langGrid">
+      <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+      <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+      <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
+      <button class="lang-btn" data-lang="de">🇩🇪 Deutsch</button>
+    </div>
+  </div>
+
+  <!-- Default settings -->
+  <div class="settings-section">
+    <div class="settings-label" data-i18n="settingDefaults">Paramètres par défaut</div>
+    <p class="settings-desc" data-i18n="settingDefaultsDesc">Sauvegardez votre configuration actuelle comme point de départ pour les nouveaux onglets.</p>
+    <div class="settings-row">
+      <button class="pill-btn btn-green" id="btnSaveDefaults" data-i18n="saveDefaults">Sauvegarder comme défaut</button>
+      <button class="pill-btn btn-ghost" id="btnLoadDefaults" id="btnLoadDefaults" data-i18n="loadDefaults">Charger mes défauts</button>
+    </div>
+  </div>
+
+  <!-- Factory reset -->
+  <div class="settings-section">
+    <div class="settings-label danger-label" data-i18n="settingFactory">Réinitialisation</div>
+    <p class="settings-desc" data-i18n="settingFactoryDesc">Restaure tous les paramètres et supprime les scripts personnalisés.</p>
+    <button class="pill-btn btn-red-ghost" id="btnFactoryReset" data-i18n="factoryReset">Restaurer les paramètres usine</button>
+  </div>
+
+  <!-- About -->
+  <div class="settings-section">
+    <div class="settings-label" data-i18n="settingAbout">À propos</div>
+    <div class="about-card">
+      <div class="about-row">
+        <span class="about-key">Version</span>
+        <span class="about-val mono" id="aboutVersion">2.0.0</span>
       </div>
-      <div class="group-body utils-row">
-        <button class="util-btn" id="btnViewSource">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><polyline points="16 18 22 12 16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="8 6 2 12 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          Code source
-        </button>
-        <button class="util-btn" id="btnCopyUrl">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          Copier URL
-        </button>
-        <button class="util-btn" id="btnOpenIncognito">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          Incognito
-        </button>
+      <div class="about-row">
+        <span class="about-key" data-i18n="aboutEngine">Moteur</span>
+        <span class="about-val mono">Manifest V3 · MAIN world</span>
+      </div>
+      <div class="about-row">
+        <span class="about-key" data-i18n="aboutLayers">Couches bypass</span>
+        <span class="about-val mono">L1–L9</span>
+      </div>
+      <div class="about-row">
+        <span class="about-key" data-i18n="aboutCompat">Compatibilité</span>
+        <span class="about-val mono">Chrome 111+, Edge 111+</span>
+      </div>
+      <div class="about-row">
+        <span class="about-key">License</span>
+        <span class="about-val mono">MIT</span>
       </div>
     </div>
+  </div>
 
-  </div><!-- /content -->
+</div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <span class="footer-note">Les paramètres sont synchronisés entre les onglets</span>
-    <div class="footer-dot" id="syncDot" title="Synchronisé"></div>
-  </footer>
+<!-- ══ FOOTER ══════════════════════════════════════════════════ -->
+<footer class="footer">
+  <span class="footer-note" data-i18n="footerSync">Synchronisé entre onglets</span>
+  <div class="footer-dot" id="syncDot"></div>
+</footer>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast"></div>
+<!-- Tooltip -->
+<div class="tooltip" id="tooltip"></div>
+<!-- Toast -->
+<div class="toast" id="toast"></div>
 
-  <script src="popup.js"></script>
+<script src="popup.js"></script>
 </body>
 </html>
