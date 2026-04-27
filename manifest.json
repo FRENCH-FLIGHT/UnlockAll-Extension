@@ -2,9 +2,9 @@
   "manifest_version": 3,
   "name": "UnlockAll: Page Freedom",
   "short_name": "UnlockAll",
-  "version": "2.0.0",
-  "description": "Restore full control over web pages: right-click, text selection, copy-paste, drag & drop, and more.",
-  "permissions": ["storage", "activeTab", "scripting", "tabs"],
+  "version": "2.1.0",
+  "description": "Restore full control over web pages: right-click, text selection, copy-paste, drag & drop, cookie manager, and more.",
+  "permissions": ["storage", "activeTab", "scripting", "tabs", "cookies"],
   "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html",
