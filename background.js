@@ -1,41 +1,94 @@
 /**
- * UnlockAll – background.js (Service Worker)
+ * UnlockAll v2.1 – background.js (Service Worker)
+ *
+ * Responsabilités :
+ *   1. Génère et rotation du token d'authentification postMessage
+ *   2. Proxy chrome.cookies → appelé par content.js
+ *   3. Badge de l'icône
  */
 
-const DEFAULT_SETTINGS = {
-  contextmenu:    true,
-  selectstart:    true,
-  clipboard:      true,
-  keyboard:       true,
-  dragdrop:       true,
-  scroll:         false,   // Désactivé par défaut (casse trop de sites)
-  cursor:         true,
-  pointerEvents:  false,   // Désactivé par défaut (très risqué)
-  print:          true,
-  overlays:       false,   // Désactivé par défaut
-  devtools:       false,
-  consoleProtect: false,
-  focus:          false,   // Désactivé par défaut
+const FACTORY_DEFAULTS = {
+  contextmenu: true,  selectstart: true,  clipboard: true,  keyboard: true,
+  dragdrop: true,     scroll: false,      cursor: true,     pointerEvents: false,
+  print: true,        overlays: false,    devtools: false,  consoleProtect: false,
+  focus: false,       visibility: true,
 };
 
-// First install: set defaults
-chrome.runtime.onInstalled.addListener(({ reason }) => {
+// ── Token de session ─────────────────────────────────────────────
+function generateToken() {
+  const arr = new Uint8Array(32);
+  crypto.getRandomValues(arr);
+  return Array.from(arr, b => b.toString(16).padStart(2, '0')).join('');
+}
+
+chrome.runtime.onInstalled.addListener(async ({ reason }) => {
+  await chrome.storage.local.set({ __ua_token: generateToken() });
   if (reason === 'install') {
-    chrome.storage.sync.set(DEFAULT_SETTINGS);
+    await chrome.storage.sync.set({
+      ...FACTORY_DEFAULTS,
+      customScripts: '[]',
+      language: 'fr',
+      theme: 'dark',
+      userDefaults: null,
+    });
   }
 });
 
-// Update badge based on active features
-async function updateBadge(tabId) {
-  const settings = await chrome.storage.sync.get(DEFAULT_SETTINGS);
-  const activeCount = Object.values(settings).filter(Boolean).length;
-  const total = Object.keys(DEFAULT_SETTINGS).length;
+// Regénère le token à chaque démarrage du navigateur
+chrome.runtime.onStartup.addListener(async () => {
+  await chrome.storage.local.set({ __ua_token: generateToken() });
+});
 
-  chrome.action.setBadgeText({ text: activeCount === total ? 'ALL' : String(activeCount), tabId });
-  chrome.action.setBadgeBackgroundColor({ color: activeCount > 0 ? '#22c55e' : '#64748b', tabId });
+// ── Messages ─────────────────────────────────────────────────────
+chrome.runtime.onMessage.addListener((msg, _sender, reply) => {
+  switch (msg.action) {
+
+    case 'getFactoryDefaults':
+      reply({ defaults: FACTORY_DEFAULTS });
+      return true;
+
+    // ─ Cookies ─
+    case 'cookies.getAll':
+      chrome.cookies.getAll(msg.details || {}, cookies => {
+        reply({ ok: true, cookies: cookies || [] });
+      });
+      return true;
+
+    case 'cookies.getAll.domain':
+      chrome.cookies.getAll({ domain: msg.domain }, cookies => {
+        reply({ ok: true, cookies: cookies || [] });
+      });
+      return true;
+
+    case 'cookies.set':
+      chrome.cookies.set(msg.details, cookie => {
+        if (chrome.runtime.lastError) reply({ ok: false, error: chrome.runtime.lastError.message });
+        else reply({ ok: true, cookie });
+      });
+      return true;
+
+    case 'cookies.remove':
+      chrome.cookies.remove(msg.details, () => {
+        if (chrome.runtime.lastError) reply({ ok: false, error: chrome.runtime.lastError.message });
+        else reply({ ok: true });
+      });
+      return true;
+
+    default:
+      return false;
+  }
+});
+
+// ── Badge ────────────────────────────────────────────────────────
+async function updateBadge(tabId) {
+  try {
+    const s = await chrome.storage.sync.get(FACTORY_DEFAULTS);
+    const active = Object.keys(FACTORY_DEFAULTS).filter(k => s[k]).length;
+    await chrome.action.setBadgeText({ text: active > 0 ? String(active) : '', tabId });
+    await chrome.action.setBadgeBackgroundColor({ color: active > 0 ? '#22c55e' : '#64748b', tabId });
+  } catch (_) {}
 }
 
-// Update badge when tab changes
 chrome.tabs.onActivated.addListener(({ tabId }) => updateBadge(tabId));
 chrome.storage.onChanged.addListener(async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
