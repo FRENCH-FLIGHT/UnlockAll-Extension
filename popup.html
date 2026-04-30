@@ -26,9 +26,9 @@
     </div>
   </div>
   <div class="header-right">
-    <button class="theme-toggle" id="btnTheme" title="Mode clair/sombre">
-      <svg id="iconMoon" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <svg id="iconSun" width="14" height="14" viewBox="0 0 24 24" fill="none" style="display:none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <button class="icon-btn-sm" id="btnTheme" title="Basculer thème">
+      <svg id="iconMoon" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg id="iconSun"  width="14" height="14" viewBox="0 0 24 24" fill="none" style="display:none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
     <div class="status-badge" id="statusBadge">
       <span class="status-dot"></span>
@@ -47,10 +47,23 @@
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     <span data-i18n="disableAll">Tout désactiver</span>
   </button>
-  <!-- Picker: two states toggled via JS -->
   <button class="quick-btn btn-purple" id="btnPickOverlay">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M22 12c0 0-4 8-10 8S2 12 2 12s4-8 10-8 10 8 10 8z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     <span id="btnPickerLabel" data-i18n="picker">Cibler</span>
+  </button>
+</div>
+
+<!-- ══ PANEL LAUNCHERS ════════════════════════════════════════ -->
+<div class="launcher-bar">
+  <button class="launcher-btn" id="btnOpenCookies">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><circle cx="15" cy="9" r="1" fill="currentColor"/><circle cx="10" cy="14" r="1.5" fill="currentColor"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor"/></svg>
+    <span data-i18n="launchCookies">Cookies</span>
+    <span class="launcher-arrow">↗</span>
+  </button>
+  <button class="launcher-btn" id="btnOpenResources">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span data-i18n="launchResources">Ressources</span>
+    <span class="launcher-arrow">↗</span>
   </button>
 </div>
 
@@ -65,11 +78,6 @@
     <span data-i18n="tabOverlays">Overlays</span>
     <span class="tab-badge" id="overlayBadge" style="display:none">0</span>
   </button>
-  <button class="tab" data-tab="cookies">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><circle cx="15" cy="9" r="1" fill="currentColor"/><circle cx="10" cy="14" r="1.5" fill="currentColor"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor"/></svg>
-    <span data-i18n="tabCookies">Cookies</span>
-    <span class="tab-badge tab-badge-amber" id="cookieBadge" style="display:none">0</span>
-  </button>
   <button class="tab" data-tab="scripts">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><polyline points="16 18 22 12 16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="8 6 2 12 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     <span data-i18n="tabScripts">Scripts</span>
@@ -81,11 +89,10 @@
   </button>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- PANEL: PROTECTIONS                                         -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- ══ PANEL: PROTECTIONS ══════════════════════════════════════ -->
 <div class="panel active" id="panel-protections">
 
+  <!-- Souris & Sélection -->
   <div class="group">
     <div class="group-header">
       <span class="group-icon">🖱️</span>
@@ -93,15 +100,13 @@
       <span class="group-count" id="cnt-mouse">0/4</span>
     </div>
     <div class="group-body">
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fContextmenu">Clic droit</div>
-          <div class="feature-desc" data-i18n="dContextmenu">Réactive le menu qui apparaît quand vous faites un clic droit sur la page</div>
+          <div class="feature-desc" data-i18n="dContextmenu">Réactive le menu qui apparaît avec un clic droit</div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="contextmenu"/><span class="slider"></span></label>
       </div>
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fSelectstart">Sélection de texte</div>
@@ -109,26 +114,24 @@
         </div>
         <label class="toggle"><input type="checkbox" data-key="selectstart"/><span class="slider"></span></label>
       </div>
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fCursor">Curseur de souris</div>
-          <div class="feature-desc" data-i18n="dCursor">Force l'affichage du curseur quand un site le cache intentionnellement</div>
+          <div class="feature-desc" data-i18n="dCursor">Force l'affichage du curseur quand un site le cache</div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="cursor"/><span class="slider"></span></label>
       </div>
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fPointerEvents">Clics sur les overlays</div>
-          <div class="feature-desc" data-i18n="dPointerEvents">Rend cliquable le contenu caché sous les fenêtres popup qui bloquent la page</div>
+          <div class="feature-desc" data-i18n="dPointerEvents">Rend cliquable le contenu caché sous les fenêtres bloquantes</div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="pointerEvents"/><span class="slider"></span></label>
       </div>
-
     </div>
   </div>
 
+  <!-- Copier-coller & Clavier -->
   <div class="group">
     <div class="group-header">
       <span class="group-icon">📋</span>
@@ -136,34 +139,31 @@
       <span class="group-count" id="cnt-keyboard">0/3</span>
     </div>
     <div class="group-body">
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fClipboard">Copier / Couper / Coller</div>
-          <div class="feature-desc" data-i18n="dClipboard">Autorise Ctrl+C, Ctrl+X, Ctrl+V même sur les sites qui les désactivent</div>
+          <div class="feature-desc" data-i18n="dClipboard">Autorise Ctrl+C, Ctrl+X, Ctrl+V sur les sites qui les désactivent</div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="clipboard"/><span class="slider"></span></label>
       </div>
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fKeyboard">Raccourcis clavier</div>
-          <div class="feature-desc" data-i18n="dKeyboard">Empêche le site de bloquer vos raccourcis habituels (Ctrl+A, F5, etc.)</div>
+          <div class="feature-desc" data-i18n="dKeyboard">Empêche le site de bloquer vos raccourcis habituels</div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="keyboard"/><span class="slider"></span></label>
       </div>
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fFocus">Anti-vol de focus</div>
-          <div class="feature-desc" data-i18n="dFocus">Empêche le site de déplacer automatiquement votre curseur ou de changer d'onglet</div>
+          <div class="feature-desc" data-i18n="dFocus">Empêche le site de déplacer automatiquement votre curseur</div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="focus"/><span class="slider"></span></label>
       </div>
-
     </div>
   </div>
 
+  <!-- Comportement de page -->
   <div class="group">
     <div class="group-header">
       <span class="group-icon">📜</span>
@@ -171,50 +171,45 @@
       <span class="group-count" id="cnt-behavior">0/5</span>
     </div>
     <div class="group-body">
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fDragdrop">Glisser-déposer</div>
-          <div class="feature-desc" data-i18n="dDragdrop">Rétablit le glisser-déposer d'images, fichiers et liens sur toute la page</div>
+          <div class="feature-desc" data-i18n="dDragdrop">Rétablit le glisser-déposer d'images, fichiers et liens</div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="dragdrop"/><span class="slider"></span></label>
       </div>
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fScroll">Défilement de page</div>
-          <div class="feature-desc" data-i18n="dScroll">Débloque le scroll quand un site fixe la page pour forcer la lecture d'une pub ou popup</div>
+          <div class="feature-desc" data-i18n="dScroll">Débloque le scroll quand un site fixe la page</div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="scroll"/><span class="slider"></span></label>
       </div>
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fPrint">Impression</div>
-          <div class="feature-desc" data-i18n="dPrint">Permet d'imprimer ou de sauvegarder en PDF les pages qui l'interdisent</div>
+          <div class="feature-desc" data-i18n="dPrint">Permet d'imprimer ou sauvegarder en PDF les pages qui l'interdisent</div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="print"/><span class="slider"></span></label>
       </div>
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fVisibility">Toujours visible</div>
-          <div class="feature-desc" data-i18n="dVisibility">Fait croire au site que vous êtes toujours sur cet onglet, même si vous en changez</div>
+          <div class="feature-desc" data-i18n="dVisibility">Fait croire au site que vous êtes toujours sur cet onglet</div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="visibility"/><span class="slider"></span></label>
       </div>
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fOverlays">Masquage auto des popups</div>
-          <div class="feature-desc" data-i18n="dOverlays">Détecte et masque automatiquement les grandes fenêtres bloquantes (paywall, abonnement…)</div>
+          <div class="feature-desc" data-i18n="dOverlays">Détecte et masque automatiquement les grandes fenêtres bloquantes</div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="overlays"/><span class="slider"></span></label>
       </div>
-
     </div>
   </div>
 
+  <!-- Avancé -->
   <div class="group">
     <div class="group-header">
       <span class="group-icon">⚙️</span>
@@ -222,29 +217,27 @@
       <span class="group-count" id="cnt-advanced">0/2</span>
     </div>
     <div class="group-body">
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fDevtools">Masquer les outils développeur</div>
           <div class="feature-desc">
             <span class="badge-warn" data-i18n="experimental">Expérimental</span>
-            <span data-i18n="dDevtools">Empêche le site de détecter que vous avez ouvert les outils développeur (F12)</span>
+            <span data-i18n="dDevtools">Empêche le site de détecter que vous avez ouvert la console F12</span>
           </div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="devtools"/><span class="slider"></span></label>
       </div>
-
       <div class="feature-row">
         <div class="feature-info">
           <div class="feature-name" data-i18n="fConsole">Protéger la console</div>
-          <div class="feature-desc" data-i18n="dConsole">Empêche le site d'effacer les messages dans la console développeur</div>
+          <div class="feature-desc" data-i18n="dConsole">Empêche le site d'effacer les messages dans la console</div>
         </div>
         <label class="toggle"><input type="checkbox" data-key="consoleProtect"/><span class="slider"></span></label>
       </div>
-
     </div>
   </div>
 
+  <!-- Outils rapides -->
   <div class="group">
     <div class="group-header">
       <span class="group-icon">🔧</span>
@@ -268,9 +261,7 @@
 
 </div><!-- /panel-protections -->
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- PANEL: OVERLAYS                                            -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- ══ PANEL: OVERLAYS ═════════════════════════════════════════ -->
 <div class="panel" id="panel-overlays">
   <div class="panel-toolbar">
     <span class="panel-info" id="overlayCount" data-i18n="overlayNone">Aucun overlay masqué</span>
@@ -278,87 +269,14 @@
   </div>
   <div class="overlay-list" id="overlayList">
     <div class="empty-state" id="overlayEmpty">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      <p data-i18n="overlayEmptyMsg">Aucun overlay supprimé sur cette page.</p>
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <p data-i18n="overlayEmptyMsg">Aucun overlay supprimé.</p>
       <p class="empty-sub" data-i18n="overlayEmptyHint">Activez la suppression auto ou utilisez le bouton Cibler.</p>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- PANEL: COOKIES                                             -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<div class="panel" id="panel-cookies">
-  <div class="panel-toolbar">
-    <div class="cookie-search-wrap">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      <input type="text" class="cookie-search" id="cookieSearch" placeholder="Filtrer les cookies…" data-i18n-placeholder="cookieSearchPlaceholder"/>
-    </div>
-    <div class="cookie-toolbar-actions">
-      <button class="pill-btn btn-green" id="btnAddCookie">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
-        <span data-i18n="addCookie">Ajouter</span>
-      </button>
-      <button class="pill-btn btn-ghost" id="btnRefreshCookies">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><polyline points="23 4 23 10 17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span data-i18n="refresh">Actualiser</span>
-      </button>
-    </div>
-  </div>
-  <div class="cookie-list" id="cookieList">
-    <div class="empty-state" id="cookieEmpty">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" opacity=".4"/><circle cx="15" cy="9" r="1" fill="currentColor" opacity=".4"/></svg>
-      <p data-i18n="cookieEmptyMsg">Aucun cookie trouvé pour ce site.</p>
-    </div>
-  </div>
-
-  <!-- Cookie editor (inline) -->
-  <div class="cookie-editor" id="cookieEditor" style="display:none">
-    <div class="editor-header">
-      <span class="editor-title" id="cookieEditorTitle">Nouveau cookie</span>
-      <button class="icon-btn" id="btnCloseCookieEditor">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-    </div>
-    <div class="cookie-form">
-      <div class="form-row">
-        <label class="form-label" data-i18n="cookieName">Nom</label>
-        <input type="text" class="form-input" id="cName" placeholder="session_id"/>
-      </div>
-      <div class="form-row">
-        <label class="form-label" data-i18n="cookieValue">Valeur</label>
-        <textarea class="form-input form-textarea" id="cValue" placeholder="abc123…"></textarea>
-      </div>
-      <div class="form-row-2">
-        <div class="form-row">
-          <label class="form-label" data-i18n="cookieDomain">Domaine</label>
-          <input type="text" class="form-input" id="cDomain" placeholder=".example.com"/>
-        </div>
-        <div class="form-row">
-          <label class="form-label" data-i18n="cookiePath">Chemin</label>
-          <input type="text" class="form-input" id="cPath" placeholder="/"/>
-        </div>
-      </div>
-      <div class="form-row">
-        <label class="form-label" data-i18n="cookieExpiry">Expiration (date/heure, vide = session)</label>
-        <input type="datetime-local" class="form-input" id="cExpiry"/>
-      </div>
-      <div class="form-flags">
-        <label class="flag-label"><input type="checkbox" id="cSecure"/> <span data-i18n="cookieSecure">Secure</span></label>
-        <label class="flag-label"><input type="checkbox" id="cHttpOnly" disabled/> <span data-i18n="cookieHttpOnly">HttpOnly <span class="flag-note">(lecture seule)</span></span></label>
-        <label class="flag-label"><input type="checkbox" id="cSession"/> <span data-i18n="cookieSession">Session uniquement</span></label>
-      </div>
-      <div class="cookie-form-actions">
-        <button class="pill-btn btn-red-ghost" id="btnDeleteCookie" style="display:none" data-i18n="deleteCookie">Supprimer le cookie</button>
-        <button class="pill-btn btn-green" id="btnSaveCookie" data-i18n="saveCookie">Enregistrer</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- PANEL: SCRIPTS                                             -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- ══ PANEL: SCRIPTS ══════════════════════════════════════════ -->
 <div class="panel" id="panel-scripts">
   <div class="panel-toolbar">
     <button class="pill-btn btn-green" id="btnNewScript">
@@ -368,48 +286,47 @@
   </div>
   <div class="script-list" id="scriptList">
     <div class="empty-state" id="scriptEmpty">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><polyline points="16 18 22 12 16 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="8 6 2 12 8 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><polyline points="16 18 22 12 16 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="8 6 2 12 8 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       <p data-i18n="scriptEmptyMsg">Aucun script personnalisé.</p>
-      <p class="empty-sub" data-i18n="scriptEmptyHint">Créez des scripts JavaScript qui s'exécutent automatiquement sur chaque page.</p>
+      <p class="empty-sub" data-i18n="scriptEmptyHint">Créez des scripts JS qui s'exécutent sur chaque page.</p>
     </div>
   </div>
 
-  <!-- Script editor -->
+  <!-- Éditeur de script (inline, affiché au besoin) -->
   <div class="script-editor" id="scriptEditor" style="display:none">
     <div class="editor-header">
-      <input type="text" class="editor-name" id="editorName" placeholder="Nom du script…"/>
-      <button class="icon-btn" id="btnCloseEditor">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="text" class="editor-name" id="editorName" placeholder="Nom du script…" maxlength="60" autocomplete="off"/>
+      <button class="icon-btn-close" id="btnCloseEditor" aria-label="Fermer">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
     <div class="editor-meta">
-      <label class="form-label" style="font-size:10px;margin-bottom:3px;display:block" data-i18n="runAtLabel">Moment d'exécution :</label>
+      <label class="form-label" data-i18n="runAtLabel">Moment d'exécution :</label>
       <select class="editor-select" id="editorRunAt">
-        <option value="document_start" data-i18n="runStart">Au démarrage — avant le contenu de la page</option>
-        <option value="document_end" data-i18n="runEnd">Quand la page est structurée (DOM prêt)</option>
-        <option value="document_idle" data-i18n="runIdle">Quand tout est chargé (images, scripts…)</option>
+        <option value="document_start" data-i18n="runStart">Au démarrage — avant le contenu</option>
+        <option value="document_end"   data-i18n="runEnd">DOM prêt (structure chargée)</option>
+        <option value="document_idle"  data-i18n="runIdle">Chargement complet (images, scripts…)</option>
       </select>
     </div>
-    <textarea class="editor-code" id="editorCode" spellcheck="false" placeholder="// Votre JavaScript ici&#10;// Vous avez accès à toute la page&#10;// Exemple : document.title = 'Mon titre';"></textarea>
+    <textarea class="editor-code" id="editorCode" spellcheck="false"
+      placeholder="// Votre JavaScript ici&#10;// Accès complet au contexte de la page&#10;// Exemple : document.title = 'Mon titre';"></textarea>
     <div class="editor-footer">
       <div class="editor-tips">
-        <span class="tip-label">Exemples :</span>
+        <span class="tip-label" data-i18n="examplesLabel">Exemples :</span>
         <button class="tip-btn" data-snippet="// Supprimer les publicités&#10;document.querySelectorAll('[class*=&quot;ad&quot;],[id*=&quot;ad&quot;],[class*=&quot;pub&quot;]').forEach(el => el.remove());">Suppr. pubs</button>
-        <button class="tip-btn" data-snippet="// Forcer la langue en anglais&#10;document.documentElement.lang = 'en';&#10;document.documentElement.setAttribute('lang','en');">Forcer EN</button>
-        <button class="tip-btn" data-snippet="// Rendre toutes les images visibles&#10;document.querySelectorAll('img').forEach(img => {&#10;  img.style.display = 'block';&#10;  img.style.visibility = 'visible';&#10;  img.removeAttribute('loading');&#10;});">Afficher imgs</button>
-        <button class="tip-btn" data-snippet="// Supprimer les éléments bloquants (paywall)&#10;document.querySelectorAll('[class*=&quot;paywall&quot;],[class*=&quot;wall&quot;],[class*=&quot;gate&quot;]').forEach(el => el.remove());&#10;document.body.style.overflow = 'auto';">Anti-paywall</button>
+        <button class="tip-btn" data-snippet="// Forcer la langue en anglais&#10;document.documentElement.lang = 'en';">Forcer EN</button>
+        <button class="tip-btn" data-snippet="// Rendre toutes les images visibles&#10;document.querySelectorAll('img').forEach(img => {&#10;  img.style.display = 'block';&#10;  img.style.visibility = 'visible';&#10;});">Afficher imgs</button>
+        <button class="tip-btn" data-snippet="// Supprimer les paywalls&#10;document.querySelectorAll('[class*=&quot;paywall&quot;],[class*=&quot;wall&quot;],[class*=&quot;gate&quot;]').forEach(el => el.remove());&#10;document.body.style.overflow = 'auto';">Anti-paywall</button>
       </div>
       <div class="editor-actions">
         <button class="pill-btn btn-red-ghost" id="btnDeleteScript" style="display:none" data-i18n="deleteScript">Supprimer</button>
-        <button class="pill-btn btn-green" id="btnSaveScript" data-i18n="saveScript">Enregistrer</button>
+        <button class="pill-btn btn-green"     id="btnSaveScript"                       data-i18n="saveScript">Enregistrer</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- PANEL: SETTINGS                                            -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- ══ PANEL: SETTINGS ═════════════════════════════════════════ -->
 <div class="panel" id="panel-settings">
 
   <div class="settings-section">
@@ -425,12 +342,12 @@
   <div class="settings-section">
     <div class="settings-label" data-i18n="settingTheme">Apparence</div>
     <div class="theme-row">
-      <button class="theme-pick active" data-theme="dark" id="themePickDark">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <button class="theme-pick" data-theme="dark" id="themePickDark">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <span data-i18n="themeDark">Sombre</span>
       </button>
       <button class="theme-pick" data-theme="light" id="themePickLight">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <span data-i18n="themeLight">Clair</span>
       </button>
     </div>
@@ -438,7 +355,7 @@
 
   <div class="settings-section">
     <div class="settings-label" data-i18n="settingDefaults">Paramètres par défaut</div>
-    <p class="settings-desc" data-i18n="settingDefaultsDesc">Sauvegardez votre configuration actuelle pour la réappliquer facilement sur n'importe quel onglet.</p>
+    <p class="settings-desc" data-i18n="settingDefaultsDesc">Sauvegardez votre configuration actuelle pour la réappliquer facilement.</p>
     <div class="settings-row">
       <button class="pill-btn btn-green" id="btnSaveDefaults" data-i18n="saveDefaults">Sauvegarder comme défaut</button>
       <button class="pill-btn btn-ghost" id="btnLoadDefaults" data-i18n="loadDefaults">Charger mes défauts</button>
@@ -447,7 +364,7 @@
 
   <div class="settings-section">
     <div class="settings-label danger-label" data-i18n="settingFactory">Réinitialisation</div>
-    <p class="settings-desc" data-i18n="settingFactoryDesc">Remet tout à zéro : supprime vos scripts personnalisés et remet les réglages d'origine.</p>
+    <p class="settings-desc" data-i18n="settingFactoryDesc">Remet tout à zéro et supprime vos scripts personnalisés.</p>
     <button class="pill-btn btn-red-ghost" id="btnFactoryReset" data-i18n="factoryReset">Restaurer les paramètres usine</button>
   </div>
 
@@ -455,7 +372,7 @@
     <div class="settings-label" data-i18n="settingAbout">À propos</div>
     <div class="about-card">
       <div class="about-row"><span class="about-key">Version</span><span class="about-val mono" id="aboutVersion">2.1.0</span></div>
-      <div class="about-row"><span class="about-key" data-i18n="aboutEngine">Moteur</span><span class="about-val mono">MV3 · MAIN world · 9 couches</span></div>
+      <div class="about-row"><span class="about-key" data-i18n="aboutEngine">Moteur</span><span class="about-val mono">MV3 · MAIN world · L1–L9</span></div>
       <div class="about-row"><span class="about-key" data-i18n="aboutCompat">Compatibilité</span><span class="about-val mono">Chrome 111+ · Edge 111+</span></div>
       <div class="about-row"><span class="about-key">License</span><span class="about-val mono">MIT</span></div>
     </div>
@@ -469,13 +386,16 @@
   <div class="footer-dot" id="syncDot"></div>
 </footer>
 
-<div class="toast" id="toast"></div>
-<div class="modal-backdrop" id="modalBackdrop" style="display:none">
-  <div class="confirm-box" id="confirmBox">
-    <div class="confirm-title" id="confirmTitle"></div>
-    <div class="confirm-msg" id="confirmMsg"></div>
+<!-- Toast notification -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Modal de confirmation -->
+<div class="modal-backdrop" id="modalBackdrop" style="display:none" role="dialog" aria-modal="true">
+  <div class="confirm-box">
+    <div class="confirm-title"  id="confirmTitle"></div>
+    <div class="confirm-msg"    id="confirmMsg"></div>
     <div class="confirm-actions">
-      <button class="pill-btn btn-ghost" id="confirmNo"></button>
+      <button class="pill-btn btn-ghost"    id="confirmNo"></button>
       <button class="pill-btn btn-red-ghost" id="confirmYes"></button>
     </div>
   </div>
